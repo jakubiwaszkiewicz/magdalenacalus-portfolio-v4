@@ -24,27 +24,49 @@ export function AchievementsSection() {
           {achievements.intro}
         </p>
 
-        <div className="mt-10 grid gap-px bg-border/70 sm:grid-cols-2">
+        <div className="mt-10 grid gap-px sm:grid-cols-2">
           {achievements.entries.map((entry) => (
             <article
               key={entry.slug}
               className="flex flex-col gap-4 bg-background p-8 transition-colors duration-300 hover:bg-muted/40"
             >
               <div className="flex items-center justify-between gap-3">
-                <p className="text-sm text-muted-foreground">{entry.year}</p>
-                <Badge variant="outline">
+                {entry.year ? (
+                  <p className="text-sm text-muted-foreground">{entry.year}</p>
+                ) : null}
+                <Badge variant="outline" className="ml-auto">
                   {achievementTypeLabels[entry.type]}
                 </Badge>
               </div>
               <h3 className="font-heading text-2xl tracking-[0.04em]">
                 {entry.title}
               </h3>
-              <p className="text-sm text-muted-foreground">
-                {entry.organization}
-              </p>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                {entry.description}
-              </p>
+              {entry.organization ? (
+                <p className="text-sm text-muted-foreground">
+                  {entry.organization}
+                </p>
+              ) : null}
+              {entry.description ? (
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {entry.description}
+                </p>
+              ) : null}
+              {entry.links?.length ? (
+                <ul className="space-y-1 text-sm">
+                  {entry.links.map((link) => (
+                    <li key={link.href}>
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary underline-offset-4 hover:underline"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
             </article>
           ))}
         </div>
@@ -76,12 +98,19 @@ export function AchievementsSection() {
                 <h3 className="font-heading text-2xl tracking-[0.04em]">
                   {entry.title}
                 </h3>
-                <p className="text-sm text-muted-foreground">
-                  {entry.organization}
-                </p>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {entry.description}
-                </p>
+                {entry.organization ? (
+                  <p className="text-sm text-muted-foreground">
+                    {entry.organization}
+                  </p>
+                ) : null}
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  {entry.highlights.map((highlight) => (
+                    <li key={highlight} className="flex gap-3">
+                      <span className="mt-2 size-1.5 shrink-0 bg-primary" />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
               </article>
             ))}
           </div>

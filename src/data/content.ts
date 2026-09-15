@@ -2,7 +2,7 @@ export const site = {
   name: "Magdalena Całus",
   shortName: "M. CAŁUS",
   role: "Architect",
-  status: "Open to Architecture's Assistant and Junior Architect roles",
+  status: "Open to Junior Architect, Student Architect or Architect's Assistant roles",
   location: "Copenhagen, Denmark",
   email: "magdalena.calus21@gmail.com",
   phone: "+48 533 143 728",
@@ -11,7 +11,7 @@ export const site = {
 }
 
 export const navItems = [
-  { label: "Work", href: "#projects" },
+  { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Education", href: "#education" },
   { label: "Achievements", href: "#achievements" },
@@ -21,9 +21,10 @@ export const navItems = [
 
 export type ProjectCategory =
   | "academic"
+  | "contests"
   | "work"
   | "drawing"
-  | "sculptures"
+  | "sculpture"
   | "digital"
   | "painting"
 
@@ -45,14 +46,14 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "self-help-center",
-    title: "Self-Help Center",
+    title: "Self-Help Center for People Experiencing Homelessness",
     categories: ["academic"],
     featured: true,
     year: "Bachelor’s project",
-    location: "Upper Silesia, Poland",
+    location: "Wrocław, Poland",
     type: "Adaptive reuse",
     role: "Individual",
-    tools: ["Archicad", "Drawing"],
+    tools: ["Archicad", "Free-hand drawing", "Procreate"],
     description: [
       "The Self-Help Center for People Experiencing Homelessness is designed to create an intermediate stage between homelessness and full social reintegration. The project involves the adaptive reuse and restoration of the historic Upper Silesian Railway Station, currently in a state of neglect, which is the oldest railway station building of its kind in Poland.",
       "The proposed site development is inspired by the site’s railway heritage. A series of pavilion structures, including food service facilities as well as workshop and craft spaces, are designed in the form of railway carriages.",
@@ -82,10 +83,10 @@ export const projects: Project[] = [
     categories: ["academic"],
     featured: true,
     year: "2nd semester",
-    location: "Oder River, Poland",
+    location: "Oder River, Wrocław, Poland",
     type: "Housing module",
     role: "Individual",
-    tools: ["Archicad", "Drawing"],
+    tools: ["Archicad", "Free-hand drawing", "Procreate", "Revit"],
     description: [
       "A complex of modular assisted housing units, located along the Oder River in close proximity to the city center. The site is well connected to public transportation, with tram and bus stops within walking distance. The development is situated in a quiet, low-traffic area while maintaining strong functional and spatial integration with the urban structure.",
       "All buildings are fully accessible and designed in accordance with universal design principles, ensuring usability for people with disabilities. The modular construction system allows for flexible spatial configurations and adaptation to individual user needs. The design enables the integration of an auxiliary residential unit for an assistant adjacent to the primary resident’s dwelling, as well as the combination of two modules to form a larger unit suitable for a family with children. Single-occupancy units for residents who do not require assistance are also provided.",
@@ -109,10 +110,10 @@ export const projects: Project[] = [
     categories: ["academic"],
     featured: true,
     year: "3rd semester",
-    location: "Poland",
+    location: "Wrocław, Poland",
     type: "Single-family house",
     role: "Individual",
-    tools: ["Archicad", "Drawing"],
+    tools: ["Archicad", "Free-hand drawing", "Procreate"],
     description: [
       "A single-family residential house designed in response to the specific and atypical needs of the homeowner. The client suffers from photophobia, a condition causing significant discomfort when exposed to light, particularly direct sunlight. As a result, the building was conceived to minimize daylight penetration and reduce glare within the interior spaces.",
       "This requirement directly influenced the unconventional orientation of the house. The daytime living zone is located on the northern side of the building, allowing for soft, indirect natural light, while the nighttime private zone is positioned on the southern side and illuminated through relatively small window openings to limit solar exposure. The spatial layout and façade articulation are therefore directly driven by functional and sensory considerations.",
@@ -138,10 +139,10 @@ export const projects: Project[] = [
     categories: ["academic"],
     featured: true,
     year: "4th semester",
-    location: "Stabłowice, Wrocław",
+    location: "Stabłowice, Wrocław, Poland",
     type: "Kindergarten",
     role: "Individual",
-    tools: ["Archicad", "Drawing"],
+    tools: ["Archicad", "Free-hand drawing", "Procreate"],
     description: [
       "Sensory Kindergarten. Accessible to everyone, regardless of their level of ability.",
       "The design emphasizes the child’s development through natural and healthy methods: by stimulating their senses through exposure to neutral stimuli.",
@@ -170,10 +171,10 @@ export const projects: Project[] = [
     categories: ["work"],
     featured: true,
     year: "Work project",
-    location: "Szklarska Poręba / Izera Mountains",
-    type: "Care home",
+    location: "Szklarska Poręba, Poland",
+    type: "Care facility",
     role: "Individual, under studio supervision",
-    tools: ["Archicad", "Documentation"],
+    tools: ["Archicad", "AutoCAD"],
     description: [
       "A residential care home for the elderly, located in the immediate vicinity of the Izera Mountains. The building is designed in a traditional masonry construction system. It is a two-storey structure without a basement. The ground floor accommodates residential modules for persons with reduced mobility and bedridden residents. It also contains a publicly accessible dining hall with a kitchen back-of-house area, as well as a day-care room for patients who do not require 24-hour care or permanent residence in the facility.",
       "The first floor includes a common room and a medical suite consisting of a doctor’s office and a nursing station. The main entrance is visually emphasized with a colored accent to improve wayfinding and spatial orientation for residents.",
@@ -213,9 +214,10 @@ export const viewLabels: Record<ProjectView, string> = {
   featured: "Featured",
   all: "All",
   academic: "Academic",
+  contests: "Contests",
   work: "Work",
   drawing: "Drawing",
-  sculptures: "Sculptures",
+  sculpture: "Sculptures",
   digital: "Digital",
   painting: "Painting",
 }
@@ -242,59 +244,67 @@ export const experienceTypeLabels: Record<ExperienceType, string> = {
 
 export const experience = {
   eyebrow: "Experience",
-  title: "Studios and project work",
+  title: "Studios & project work",
   intro:
-    "From conceptual design to permits and construction documentation — housing, care facilities, industrial buildings, conservation, and refurbishment.",
+    "From conceptual design to permits and construction documentation — housing, care facilities, industrial buildings, conservation, and refurbishment. Worked both independently and in a team.",
   entries: [
     {
       slug: "inpronaft",
       period: "May 2025 – Present",
-      role: "Engineer's Assistant",
+      role: "Assistant to the Head of Fire Protection Engineering Department",
       organization: "Inpronaft",
+      location: "Remote, Poland",
       type: "work",
       highlights: [
         "Prepared technical drawings and project documentation.",
-        "Resolved design issues and co-developed installation projects for industrial facilities.",
+        "Resolved design and technical issues",
+        "Co-developed fire proctection projects for industrial facilities.",
       ],
-      tags: ["Technical drawings", "Industrial"],
+      tags: ["AutoCAD","Technical Drawings", "Fire Protection Systems", "Fire Suppresion Systems", "Microsoft Office", "Business Meetings", "Group Work", "Industrial"],
     },
     {
       slug: "freelance-structural",
       period: "Nov 2024 – Present",
-      role: "Cooperation with a Structural Engineer",
-      organization: "Freelance",
-      location: "Poland, Weoc",
-      type: "freelance",
+      role: "Structural Engineering Support",
+      organization: "Olgierd Iwaszkiewicz JDG",
+      location: "Remote, Poland",
+      type: "work",
       highlights: [
-        "Designed a single-family house within a residential-service complex in Strzegom (in progress).",
-        "Conservation project of a tenement façade in Wrocław (in progress).",
-        "Alteration projects, inventories, and 3D modelling.",
+        "Designed a single-family house within a residential-service complex in Strzegom.",
+        "Contributed to the conservation project of a tenement façade in Wrocław.",
+        "Alteration projects",
+        "Condacted building inventories", 
+        "Created 3D models.",
       ],
-      tags: ["Architecture", "3D modelling"],
+      tags: ["3D modelling", "ArchiCAD", "AutoCAD", "Conceptual Design", "Technical Documentation"],
     },
     {
       slug: "archilupus",
       period: "Oct 2025 – Jul 2026",
       role: "Junior Architect",
       organization: "Archilupus",
+      location: "Długołęka, Poland",
       type: "work",
       highlights: [
         "Led projects under supervision, from conceptual work through administrative procedures and contact with investors.",
         "Submitted a building project for housing and care facilities.",
       ],
-      tags: ["BIM", "Archicad"],
+      tags: ["BIM", "3D modelling", "ArchiCAD", "AutoCAD", "Conceptual Design", "Technical Documentation"],
     },
     {
       slug: "brown-project",
       period: "May 2025 – Jan 2026",
       role: "Architect's Assistant",
       organization: "BROWN Project",
+      location: "Wrocław, Poland",
       type: "work",
       highlights: [
-        "Co-created architectural concepts, drawings, details, and construction documentation.",
-        "Worked on permit submissions and regulatory compliance across housing, senior care, industrial, and refurbishment projects.",
+        "Co-created architectural concepts, drawings and technical details.",
+        "Prepared construction documentation, including permits and submissions.",
+        "Ensured comlience with applicable regulations and building standards.",
+        "Worked on diverse projects, including housing, senior care, industrial facilities, and refurbishments.",
       ],
-      tags: ["Architecture", "Documentation"],
+      tags: ["3D modelling", "ArchiCAD", "AutoCAD", "Conceptual Design", "Technical Documentation"],
     },
     {
       slug: "ozone-architects",
@@ -303,10 +313,13 @@ export const experience = {
       organization: "Ozone Architects",
       type: "work",
       highlights: [
-        "Participated in conceptual design and conducted analyses.",
-        "Created 3D models, visualizations, and graphic editing for housing, service, industrial, and conservation projects.",
+        "Participated in conceptual design and project development.",
+        "Conducted architectural analyses.",
+        "Created 3D models and visualizations.",
+        "Prepared graphic materials and presentations.",
+        "Worked on housing, service, industrial and conservation projects.",
       ],
-      tags: ["BIM", "Visualization"],
+      tags: ["BIM", "3D modelling", "Visualization", "AutoCAD", "Conceptual Design", "Technical Documentation"],
     },
   ] satisfies Experience[],
 }
@@ -321,7 +334,7 @@ export type Education = {
   location: string
   type: EducationType
   logo: string
-  highlights: string[]
+  highlights?: string[]
   tags: string[]
 }
 
@@ -340,14 +353,10 @@ export const education = {
       slug: "royal-danish-academy",
       period: "Present",
       degree: "Master of Architecture, Spatial Ecologies",
-      school: "Royal Danish Academy",
+      school: "Royal Danish Academy (Det Kongelige Akademi)",
       location: "Copenhagen, Denmark",
       type: "masters",
-      
       logo: "/educational/kadk_logo.jpg",
-      highlights: [
-        "Currently enrolled in the Spatial Ecologies master’s programme.",
-      ],
       tags: ["Architecture", "Spatial Ecologies"],
     },
     {
@@ -358,135 +367,182 @@ export const education = {
       location: "Wrocław, Poland",
       type: "bachelors",
       logo: "/educational/pwr_logo.jpg",
-      highlights: [
-        "Graduated with a Bachelor’s in Architecture.",
-      ],
-      tags: ["Archicad", "Architecture"],
+      tags: ["Architecture"],
     },
   ] satisfies Education[],
 }
 
-export type AchievementType = "award" | "competition" | "exhibition" | "scholarship"
+export type AchievementType =
+  | "award"
+  | "honorable_mention"
+  | "competition"
+  | "exhibition"
+  | "scholarship"
+
+export type AchievementLink = {
+  label: string
+  href: string
+}
 
 export type Achievement = {
   slug: string
-  year: string
+  year?: string
   title: string
   organization: string
   type: AchievementType
-  description: string
+  description?: string
+  links?: AchievementLink[]
 }
 
 export const achievementTypeLabels: Record<AchievementType, string> = {
   award: "Award",
+  honorable_mention: "Honorable Mention",
   competition: "Competition",
   exhibition: "Exhibition",
   scholarship: "Scholarship",
 }
 
-export const achievements = {
+export const achievements: {
+  eyebrow: string
+  title: string
+  intro: string
+  entries: Achievement[]
+} = {
   eyebrow: "Achievements",
-  title: "Awards, exhibitions, and distinctions",
-  intro:
-    "Selected recognitions from studios, competitions, and university work.",
+  title: "Awards and distinctions",
+  intro: "Selected recognitions from competitions and other work.",
   entries: [
     {
-      slug: "dean-list",
-      year: "2024",
-      title: "Dean’s List",
-      organization: "[University Name]",
+      slug: "compact-city-living",
+      title: "Honorable Mention — Compact City Living Competition",
+      organization: "Archiol",
+      type: "honorable_mention",
+      links: [
+        {
+          label: "Results",
+          href: "https://www.archiolcompetitions.com/results/compact_city_living",
+        },
+        {
+          label: "Meet the teams",
+          href: "https://www.archiolcompetitions.com/results/compact_city_living/sm-hm",
+        },
+      ],
+    },
+    {
+      slug: "zamieszkanie-2025",
+      title: "Audience Award — A&B Zamieszkanie 2025",
+      organization: "Architektura & Biznes",
       type: "award",
-      description:
-        "Recognised for academic work in the design studio and a consistent set of presentation boards.",
+      links: [
+        {
+          label: "Results",
+          href: "https://www.architekturaibiznes.pl/zamieszkanie-2025.-wyniki-glosowania-publicznosci,38378.html",
+        },
+      ],
     },
     {
-      slug: "urban-ideas-shortlist",
-      year: "2023",
-      title: "Shortlisted — Urban Ideas",
-      organization: "National Architecture Foundation",
-      type: "competition",
-      description:
-        "Team entry for a waterfront public space. Concept shortlisted in the national student category.",
+      slug: "makeup-championships-2020",
+      title: "2nd Place — Polish Championships in SFX Makeup",
+      organization: "Junior Category",
+      type: "award",
     },
-    {
-      slug: "faculty-exhibition",
-      year: "2023",
-      title: "Faculty Exhibition",
-      organization: "School of Architecture",
-      type: "exhibition",
-      description:
-        "Selected drawings and a physical model from the housing studio shown in the end-of-year exhibition.",
-    },
-    {
-      slug: "merit-scholarship",
-      year: "2022",
-      title: "Merit Scholarship",
-      organization: "[University Name]",
-      type: "scholarship",
-      description:
-        "Support for studies awarded on academic results and a portfolio of first-year studio work.",
-    },
-  ] satisfies Achievement[],
+  ],
 }
 
-export type InvolvementType = "club" | "organization" | "volunteer"
+export type InvolvementType = "club" | "organization" | "workshop"
 
 export type Involvement = {
   slug: string
   period: string
   title: string
-  organization: string
+  organization?: string
   type: InvolvementType
-  description: string
+  highlights: string[]
 }
 
 export const involvementTypeLabels: Record<InvolvementType, string> = {
   club: "Student club",
   organization: "Organization",
-  volunteer: "Volunteer",
+  workshop: "Workshop",
 }
 
-export const involvement = {
+export const involvement: {
+  eyebrow: string
+  title: string
+  intro: string
+  entries: Involvement[]
+} = {
   eyebrow: "Extra involvement",
-  title: "Student clubs and organisations",
+  title: "Student clubs and organisations.",
   intro:
-    "Student's clubs, student societies, and other work alongside studios and internships.",
+    "Student clubs, student societies, and other involvement.",
   entries: [
     {
-      slug: "architecture-circle",
-      period: "[Years]",
-      title: "[Student research club]",
-      organization: "[ Student's club / university society]",
-      type: "club",
-      description:
-        "Replace with the real club name, role, and what Magdalena organised or designed there.",
-    },
-    {
-      slug: "student-organization",
-      period: "[Years]",
-      title: "[Organisation / role]",
-      organization: "[Organisation name]",
+      slug: "best-wroclaw",
+      period: "10/2022 – 11/2025",
+      title: "BEST Wrocław",
       type: "organization",
-      description:
-        "Workshops, exhibitions, or other extra involvement — swap this placeholder for a real entry.",
+      highlights: [
+        "Vice President for Graphics and Promotion — coordinated a team of 21 people, organized events for ~300 participants",
+        "Main Coordinator of BEST Career Week 2024, coordinated a team of 8 people, organized event for ~150 participants",
+        "Marketing of BEST Hacks 2023",
+        "Graphics of BEST Career Week 2023",
+        
+      ],
     },
     {
-      slug: "volunteer-work",
-      period: "[Years]",
-      title: "[Volunteer / other]",
-      organization: "[Organisation or event]",
-      type: "volunteer",
-      description:
-        "A third slot for volunteering, workshops, or other extra involvement.",
+      slug: "students-painting-club",
+      period: "10/2023 – 07/2024",
+      title: "Student’s Painting Club",
+      type: "club",
+      highlights: [
+        "Plein air painting workshops",
+        "Exhibit at a vernissage",
+      ],
     },
-  ] satisfies Involvement[],
+    {
+      slug: "humanization-urban-environment",
+      period: "05/2023 – 07/2024",
+      title: "RC “Humanization of the Urban Environment”",
+      type: "club",
+      highlights: [
+        "Design of a demonstration track for a Mars rover",
+        "Design of a demonstration workshop pavilion",
+      ],
+    },
+    {
+      slug: "campus-life-workshop",
+      period: "10/2023",
+      title: "Architectural Workshop “Campus life” by Kees Christiaanse",
+      type: "workshop",
+      highlights: [
+        "Conceptual project of Wroclaw University of Technology campus, with the tutoring of Kees Christiaanse",
+      ],
+    },
+  ],
+}
+
+export const about = {
+  eyebrow: "About",
+  title: "Architecture from people, for people",
+  paragraphs: [
+    "I aim to design spaces that are as accessible as possible to everyone. I believe architecture can break down barriers. My future goal is to specialize in social architecture. I would love to contribute to creating spaces without obstacles — from people, for people. Personally, I am passionate about art and creating it.",
+    "I graduated with a Bachelor’s in Architecture from Wrocław University of Science and Technology and I am currently enrolled in the MA in Architecture, Spatial Ecologies Programme at the Royal Danish Academy.",
+  ],
+  portrait: "/portrait.jpg",
+  facts: [
+    { label: "Based in", value: "Copenhagen, Denmark" },
+    { label: "Studies", value: "MA Architecture, Spatial Ecologies Programme, Royal Danish Academy" },
+    { label: "Degree", value: "BA Architecture, Wrocław University of Science and Technology" },
+    { label: "Looking for", value: "Junior Architect / Architecture's Assistant" },
+  ],
 }
 
 export const contact = {
   eyebrow: "Contact",
   title: "Let’s talk about a job or a project",
   intro:
-    "I am happy to share a full portfolio PDF, CV, or to talk about Architecture's Assistant and Junior Architect roles.",
+    "I am happy to share more information or to talk about Architecture's Assistant and Junior Architect roles.",
   linkedinLabel: "LinkedIn",
   instagramLabel: "Instagram",
   mailSubject: "Portfolio enquiry from",
@@ -503,18 +559,4 @@ export const contact = {
   },
 }
 
-export const about = {
-  eyebrow: "About",
-  title: "Architecture from people, for people",
-  paragraphs: [
-    "I aim to design spaces that are as accessible as possible to everyone. I believe architecture can break down barriers. My future goal is to specialize in social architecture. I would love to contribute to creating spaces without obstacles — from people, for people. Personally, I am passionate about art and creating it.",
-    "I graduated with a Bachelor’s in Architecture from Wrocław University of Science and Technology and I am currently enrolled in the MA in Architecture, Spatial Ecologies Programme at the Royal Danish Academy.",
-  ],
-  portrait: "/portrait.jpg",
-  facts: [
-    { label: "Based in", value: "Copenhagen, Denmark" },
-    { label: "Studies", value: "MA Architecture, Spatial Ecologies Programme, Royal Danish Academy" },
-    { label: "Degree", value: "Bachelor’s in Architecture, Wrocław University of Science and Technology" },
-    { label: "Looking for", value: "Junior Architect / Architecture's Assistant" },
-  ],
-}
+

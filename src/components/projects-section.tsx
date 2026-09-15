@@ -21,9 +21,10 @@ const views: ProjectView[] = [
   "featured",
   "all",
   "academic",
+  "contests",
   "work",
   "drawing",
-  "sculptures",
+  "sculpture",
   "digital",
   "painting",
 ]
@@ -172,12 +173,19 @@ export function ProjectsSection() {
                 </DialogDescription>
               </DialogHeader>
 
-              <img
-                src={assetUrl(active.gallery[activeImage])}
-                alt={`${active.title} photo ${activeImage + 1}`}
-                className="aspect-16/11 w-full bg-background object-contain"
-                decoding="async"
-              />
+              <a
+                href={assetUrl(active.gallery[activeImage])}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block cursor-pointer"
+              >
+                <img
+                  src={assetUrl(active.gallery[activeImage])}
+                  alt={`${active.title} photo ${activeImage + 1}`}
+                  className="aspect-16/11 w-full bg-background object-contain"
+                  decoding="async"
+                />
+              </a>
 
               {active.gallery.length > 1 ? (
                 <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
