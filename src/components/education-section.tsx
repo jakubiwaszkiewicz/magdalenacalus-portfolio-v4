@@ -45,18 +45,6 @@ export function EducationSection() {
                 </div>
               </div>
 
-              
-
-              {entry.highlights?.length ? (
-                <ul className="mt-6 flex-1 space-y-2 text-sm text-muted-foreground">
-                  {entry.highlights.map((highlight) => (
-                    <li key={highlight} className="flex gap-3">
-                      <span className="mt-2 size-1.5 shrink-0 bg-primary" />
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
 
               <div className="mt-6 flex flex-wrap gap-2">
                 {entry.tags.map((tag) => (
