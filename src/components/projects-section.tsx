@@ -16,6 +16,7 @@ import {
   type ProjectView,
 } from "@/data/content"
 import { assetUrl } from "@/lib/assets"
+import { RichText } from "@/lib/rich-text"
 
 const views: ProjectView[] = [
   "featured",
@@ -118,7 +119,9 @@ export function ProjectsSection() {
                     {project.title}
                   </h3>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    {project.location} · {project.year}
+                    {project.year
+                      ? `${project.location} · ${project.year}`
+                      : project.location}
                   </p>
                 </div>
                 <div className="flex flex-wrap justify-end gap-1">
@@ -169,7 +172,9 @@ export function ProjectsSection() {
                   {active.title}
                 </DialogTitle>
                 <DialogDescription>
-                  {active.type} · {active.location} · {active.year}
+                  {[active.type, active.location, active.year]
+                    .filter(Boolean)
+                    .join(" · ")}
                 </DialogDescription>
               </DialogHeader>
 
@@ -214,22 +219,28 @@ export function ProjectsSection() {
               <div className="grid gap-6 sm:grid-cols-[1.4fr_0.8fr]">
                 <div className="space-y-3 text-sm leading-relaxed text-muted-foreground">
                   {active.description.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
+                    <p key={paragraph}>
+                      <RichText html={paragraph} />
+                    </p>
                   ))}
                 </div>
                 <dl className="space-y-3 text-sm">
-                  <div>
-                    <dt className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
-                      Role
-                    </dt>
-                    <dd>{active.role}</dd>
-                  </div>
-                  <div>
-                    <dt className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
-                      Tools
-                    </dt>
-                    <dd>{active.tools.join(", ")}</dd>
-                  </div>
+                  {active.role ? (
+                    <div>
+                      <dt className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
+                        Role
+                      </dt>
+                      <dd>{active.role}</dd>
+                    </div>
+                  ) : null}
+                  {active.tools.length > 0 ? (
+                    <div>
+                      <dt className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
+                        Tools
+                      </dt>
+                      <dd>{active.tools.join(", ")}</dd>
+                    </div>
+                  ) : null}
                 </dl>
               </div>
             </>

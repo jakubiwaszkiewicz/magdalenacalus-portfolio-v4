@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { contact, site } from "@/data/content"
+import { RichText } from "@/lib/rich-text"
 
 export function ContactSection() {
   const [sent, setSent] = useState(false)
@@ -32,7 +33,9 @@ export function ContactSection() {
           </p>
           <h2 className="font-heading text-4xl sm:text-6xl">{contact.title}</h2>
           <div className="mt-4 h-px max-w-md bg-foreground" />
-          <p className="mt-5 max-w-md text-muted-foreground">{contact.intro}</p>
+          <p className="mt-5 max-w-md text-muted-foreground">
+            <RichText html={contact.intro} />
+          </p>
 
           <ul className="mt-2 space-y-4 text-sm">
             <li className="flex items-center gap-3">

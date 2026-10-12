@@ -5,6 +5,7 @@ import {
   involvement,
   involvementTypeLabels,
 } from "@/data/content"
+import { RichText } from "@/lib/rich-text"
 
 export function AchievementsSection() {
   return (
@@ -21,7 +22,7 @@ export function AchievementsSection() {
         </h2>
         <div className="mt-4 h-px max-w-2xl bg-foreground" />
         <p className="mt-5 max-w-2xl text-muted-foreground">
-          {achievements.intro}
+          <RichText html={achievements.intro} />
         </p>
 
         <div className="mt-10 grid gap-px sm:grid-cols-2">
@@ -48,7 +49,7 @@ export function AchievementsSection() {
               ) : null}
               {entry.description ? (
                 <p className="text-sm leading-relaxed text-muted-foreground">
-                  {entry.description}
+                  <RichText html={entry.description} />
                 </p>
               ) : null}
               {entry.links?.length ? (
@@ -80,7 +81,7 @@ export function AchievementsSection() {
           </h2>
           <div className="mt-4 h-px max-w-2xl bg-foreground" />
           <p className="mt-5 max-w-2xl text-muted-foreground">
-            {involvement.intro}
+            <RichText html={involvement.intro} />
           </p>
 
           <div className="mt-14 grid grid-cols-1 gap-px bg-border/70">
@@ -107,7 +108,9 @@ export function AchievementsSection() {
                   {entry.highlights.map((highlight) => (
                     <li key={highlight} className="flex gap-3">
                       <span className="mt-2 size-1.5 shrink-0 bg-primary" />
-                      <span>{highlight}</span>
+                      <span>
+                        <RichText html={highlight} />
+                      </span>
                     </li>
                   ))}
                 </ul>

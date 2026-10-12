@@ -1,5 +1,6 @@
 import { about, site } from "@/data/content"
 import { assetUrl } from "@/lib/assets"
+import { RichText } from "@/lib/rich-text"
 
 export function AboutSection() {
   return (
@@ -15,7 +16,9 @@ export function AboutSection() {
           <div className="mt-4 h-px bg-foreground" />
           <div className="mt-6 space-y-4 text-muted-foreground">
             {about.paragraphs.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+              <p key={paragraph}>
+                <RichText html={paragraph} />
+              </p>
             ))}
           </div>
           <dl className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -24,7 +27,9 @@ export function AboutSection() {
                 <dt className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
                   {fact.label}
                 </dt>
-                <dd className="mt-1 text-sm">{fact.value}</dd>
+                <dd className="mt-1 text-sm">
+                  <RichText html={fact.value} />
+                </dd>
               </div>
             ))}
           </dl>

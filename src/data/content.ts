@@ -44,6 +44,7 @@ export type Project = {
 }
 
 export const projects: Project[] = [
+  
   {
     slug: "self-help-center",
     title: "Self-Help Center for People Experiencing Homelessness",
@@ -191,20 +192,56 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "example",
-    title: "Example Project",
+    slug: "jelenia-gora",
+    title: "New Celviskosa",
+    categories: ["academic"],
+    featured: true,
+    year: "Team project",
+    location: "Jelenia Góra, Poland",
+    type: "Urban design",
+    role: "With Paweł Dąbrowski and Zuzanna Słabicka",
+    tools: [],
+    description: [
+      "An urban design project located in Jelenia Góra, Poland, in close proximity to industrial areas. Developed collaboratively with Paweł Dąbrowski and Zuzanna Słabicka.",
+      "The main objective of the project was to create a welcoming living environment that would encourage people to settle in a city experiencing population decline. An important aspect was also to isolate the proposed development from the busy road and adjacent industrial areas.",
+      "An additional access road runs along the length of the site. Its winding layout is intended to reduce vehicle speeds and improve safety. Buildings were designed along the industrial edge to serve as an acoustic barrier, protecting the rest of the development from noise.",
+      "One of the key elements of the design is a network of green pedestrian routes connecting the proposed development with existing vegetation and a nearby watercourse. The existing water basin was preserved, restored, and incorporated into the overall spatial structure.",
+      "Services and educational facilities were located at strategic points across the site — at both ends and in the central area — strengthening the local community hub.",
+    ],
+    cover: "/projects/new-celviskosa/cover.jpg",
+    gallery: [
+      "/projects/new-celviskosa/cover.jpg",
+      "/projects/new-celviskosa/1.jpg",
+      "/projects/new-celviskosa/2.jpg",
+      "/projects/new-celviskosa/3.jpg",
+      "/projects/new-celviskosa/4.jpg",
+      "/projects/new-celviskosa/5.jpg",
+      "/projects/new-celviskosa/6.jpg",
+      "/projects/new-celviskosa/7.jpg",
+    ],
+  },
+  {
+    slug: "jerzmanowo",
+    title: "Jerzmanowo",
     categories: ["academic"],
     featured: false,
-    year: "Example",
-    location: "Poland",
-    type: "Study",
-    role: "Individual",
-    tools: ["Archicad"],
+    year: "",
+    location: "Jerzmanowo, Wrocław, Poland",
+    type: "Urban design",
+    role: "",
+    tools: [],
     description: [
-      "Placeholder project — swap this entry for other work that should sit outside Featured.",
+      "Urban design project for the development of the Jerzmanowo district in Wrocław, Poland. The main concept was to create a radial spatial structure with clear zoning and a gradual transition in building density and scale. Key radial axes are activated by placing services and amenities along them, creating vibrant public spaces filled with everyday activity. The layout builds upon the existing urban fabric and responds to the site’s topography and other existing conditions.",
     ],
-    cover: "/projects/example/cover.jpg",
-    gallery: ["/projects/example/cover.jpg"],
+    cover: "/projects/more_district/cover.png",
+    gallery: [
+      "/projects/more_district/cover.png",
+      "/projects/more_district/2.png",
+      "/projects/more_district/3.png",
+      "/projects/more_district/4.png",
+      "/projects/more_district/5.png",
+      "/projects/more_district/6.png",
+    ],
   },
 ]
 
@@ -246,8 +283,24 @@ export const experience = {
   eyebrow: "Experience",
   title: "Studios & project work",
   intro:
-    "From conceptual design to permits and construction documentation — housing, care facilities, industrial buildings, conservation, and refurbishment. Worked both independently and in a team.",
+    "From conceptual design to permits and construction documentation - housing, care facilities, industrial buildings, conservation, and refurbishment. Worked both independently and in a team.",
   entries: [
+    {
+      slug: "freelance-structural",
+      period: "Nov 2024 – Present",
+      role: "Junior Architect",
+      organization: "Olgierd Iwaszkiewicz sole trader",
+      location: "Remote, Poland",
+      type: "work",
+      highlights: [
+        "Designed a single-family house within a residential-service complex in Strzegom.",
+        "Contributed to the conservation project of a tenement façade in Wrocław.",
+        "Alteration projects",
+        "Condacted building inventories", 
+        "Created 3D models.",
+      ],
+      tags: ["3D modelling", "ArchiCAD", "AutoCAD", "Conceptual Design", "Technical Documentation"],
+    },
     {
       slug: "inpronaft",
       period: "May 2025 – Present",
@@ -261,22 +314,6 @@ export const experience = {
         "Co-developed fire proctection projects for industrial facilities.",
       ],
       tags: ["AutoCAD","Technical Drawings", "Fire Protection Systems", "Fire Suppresion Systems", "Microsoft Office", "Business Meetings", "Group Work", "Industrial"],
-    },
-    {
-      slug: "freelance-structural",
-      period: "Nov 2024 – Present",
-      role: "Structural Engineering Support",
-      organization: "Olgierd Iwaszkiewicz JDG",
-      location: "Remote, Poland",
-      type: "work",
-      highlights: [
-        "Designed a single-family house within a residential-service complex in Strzegom.",
-        "Contributed to the conservation project of a tenement façade in Wrocław.",
-        "Alteration projects",
-        "Condacted building inventories", 
-        "Created 3D models.",
-      ],
-      tags: ["3D modelling", "ArchiCAD", "AutoCAD", "Conceptual Design", "Technical Documentation"],
     },
     {
       slug: "archilupus",

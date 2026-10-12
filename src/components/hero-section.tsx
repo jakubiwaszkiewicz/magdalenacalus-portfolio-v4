@@ -4,6 +4,7 @@ import { ArrowDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { featuredProjects, site } from "@/data/content"
 import { assetUrl } from "@/lib/assets"
+import { RichText } from "@/lib/rich-text"
 
 const INTERVAL_MS = 3000
 
@@ -54,7 +55,7 @@ export function HeroSection() {
         </h1>
         <div className="animate-enter mt-5 h-px max-w-xl bg-foreground [animation-delay:180ms]" />
         <p className="animate-enter mt-6 max-w-xl text-base text-foreground/80 [animation-delay:220ms] sm:text-lg">
-          {site.status}
+          <RichText html={site.status} />
         </p>
         <div className="animate-enter mt-8 flex flex-wrap items-end justify-between gap-6 [animation-delay:320ms]">
           <div className="flex flex-wrap gap-3">

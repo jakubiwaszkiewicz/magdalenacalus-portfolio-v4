@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge"
 import { experience, experienceTypeLabels } from "@/data/content"
+import { RichText } from "@/lib/rich-text"
 
 export function ExperienceSection() {
   return (
@@ -12,7 +13,9 @@ export function ExperienceSection() {
           {experience.title}
         </h2>
         <div className="mt-4 h-px max-w-2xl bg-foreground" />
-        <p className="mt-5 max-w-2xl text-muted-foreground">{experience.intro}</p>
+        <p className="mt-5 max-w-2xl text-muted-foreground">
+          <RichText html={experience.intro} />
+        </p>
 
         <ol className="mt-14 space-y-0">
           {experience.entries.map((entry) => (
@@ -39,7 +42,9 @@ export function ExperienceSection() {
                   {entry.highlights.map((highlight) => (
                     <li key={highlight} className="flex gap-3">
                       <span className="mt-2 size-1.5 shrink-0 bg-primary" />
-                      <span>{highlight}</span>
+                      <span>
+                        <RichText html={highlight} />
+                      </span>
                     </li>
                   ))}
                 </ul>

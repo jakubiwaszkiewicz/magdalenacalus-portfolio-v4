@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge"
 import { education, educationTypeLabels } from "@/data/content"
 import { assetUrl } from "@/lib/assets"
+import { RichText } from "@/lib/rich-text"
 
 export function EducationSection() {
   return (
@@ -13,7 +14,9 @@ export function EducationSection() {
           {education.title}
         </h2>
         <div className="mt-4 h-px max-w-2xl bg-foreground" />
-        <p className="mt-5 max-w-2xl text-muted-foreground">{education.intro}</p>
+        <p className="mt-5 max-w-2xl text-muted-foreground">
+          <RichText html={education.intro} />
+        </p>
 
         <ol className="mt-14 grid gap-px bg-border/70 sm:grid-cols-2">
           {education.entries.map((entry) => (
