@@ -10,53 +10,58 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import {
+  projectFilters,
   projects,
-  viewLabels,
+  subcategoryLabels,
   type Project,
+  type ProjectSubcategory,
   type ProjectView,
 } from "@/data/content"
 import { assetUrl } from "@/lib/assets"
 import { RichText } from "@/lib/rich-text"
 
-const views: ProjectView[] = [
-  "featured",
-  "all",
-  "academic",
-  "contests",
-  "work",
-  "drawing",
-  "sculpture",
-  "digital",
-  "painting",
-]
-
 const moreProjects = projects.filter((project) => !project.featured)
 
-function matchesView(project: Project, view: ProjectView) {
-  if (view === "all") {
-    return true
-  }
-
+function matchesView(
+  project: Project,
+  view: ProjectView,
+  subcategory: ProjectSubcategory | null,
+) {
   if (view === "featured") {
     return project.featured
   }
 
-  return project.categories.includes(view)
+  if (project.category !== view) {
+    return false
+  }
+
+  if (subcategory) {
+    return project.subcategory === subcategory
+  }
+
+  return true
 }
 
 export function ProjectsSection() {
   const [view, setView] = useState<ProjectView>("featured")
+  const [subcategory, setSubcategory] = useState<ProjectSubcategory | null>(
+    null,
+  )
   const [expanded, setExpanded] = useState(false)
   const [active, setActive] = useState<Project | null>(null)
   const [activeImage, setActiveImage] = useState(0)
+
+  const subcategories =
+    projectFilters.find((filter) => filter.id === view && "children" in filter)
+      ?.children ?? []
 
   const visible = useMemo(() => {
     if (view === "featured" && expanded) {
       return projects
     }
 
-    return projects.filter((project) => matchesView(project, view))
-  }, [view, expanded])
+    return projects.filter((project) => matchesView(project, view, subcategory))
+  }, [view, subcategory, expanded])
 
   const showMore = view === "featured" && !expanded && moreProjects.length > 0
 
@@ -67,7 +72,12 @@ export function ProjectsSection() {
 
   function selectView(next: ProjectView) {
     setView(next)
-    setExpanded(next === "all")
+    setSubcategory(null)
+    setExpanded(false)
+  }
+
+  function selectSubcategory(next: ProjectSubcategory) {
+    setSubcategory((current) => (current === next ? null : next))
   }
 
   return (
@@ -81,22 +91,51 @@ export function ProjectsSection() {
             <h2 className="font-heading text-4xl sm:text-6xl">Projects</h2>
             <div className="mt-4 h-px w-full bg-foreground" />
           </div>
-          <div className="flex flex-wrap gap-2">
-            {views.map((item) => (
-              <Button
-                key={item}
-                size="sm"
-                variant={view === item ? "default" : "outline"}
-                onClick={() => selectView(item)}
-                className="cursor-pointer"
-              >
-                {viewLabels[item]}
-              </Button>
-            ))}
+          <div className="flex flex-col gap-2 sm:items-end">
+            <div className="flex flex-wrap gap-2">
+              {projectFilters.map((item) => (
+                <Button
+                  key={item.id}
+                  size="sm"
+                  variant={view === item.id ? "default" : "outline"}
+                  onClick={() => selectView(item.id)}
+                  className="cursor-pointer"
+                >
+                  {item.label}
+                </Button>
+              ))}
+            </div>
+            {subcategories.length > 0 ? (
+              <div className="flex flex-wrap gap-2">
+                {subcategories.map((item) => (
+                  <Button
+                    key={item.id}
+                    size="sm"
+                    variant={subcategory === item.id ? "default" : "outline"}
+                    onClick={() => selectSubcategory(item.id)}
+                    className="cursor-pointer"
+                  >
+                    {item.label}
+                  </Button>
+                ))}
+              </div>
+            ) : null}
           </div>
         </div>
 
-        <div className="mt-12 grid gap-8 sm:grid-cols-2">
+        {visible.length === 0 ? (
+          <p className="mt-12 text-sm text-muted-foreground">
+            No projects in this category yet.
+          </p>
+        ) : null}
+
+        <div
+          className={
+            visible.length === 0
+              ? "hidden"
+              : "mt-12 grid gap-8 sm:grid-cols-2"
+          }
+        >
           {visible.map((project) => (
             <button
               key={project.slug}
@@ -128,11 +167,9 @@ export function ProjectsSection() {
                   {project.featured ? (
                     <Badge variant="outline">Featured</Badge>
                   ) : null}
-                  {project.categories.map((category) => (
-                    <Badge key={category} variant="secondary">
-                      {viewLabels[category]}
-                    </Badge>
-                  ))}
+                  <Badge variant="secondary">
+                    {subcategoryLabels[project.subcategory]}
+                  </Badge>
                 </div>
               </div>
             </button>
@@ -145,10 +182,7 @@ export function ProjectsSection() {
               size="lg"
               variant="outline"
               className="cursor-pointer"
-              onClick={() => {
-                setExpanded(true)
-                setView("all")
-              }}
+              onClick={() => setExpanded(true)}
             >
               Show more
             </Button>

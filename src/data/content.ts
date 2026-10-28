@@ -19,19 +19,21 @@ export const navItems = [
   { label: "Contact", href: "#contact" },
 ] as const
 
-export type ProjectCategory =
+export type ProjectCategory = "architecture" | "art"
+
+export type ProjectSubcategory =
   | "academic"
   | "contests"
   | "work"
-  | "drawing"
+  | "painting"
   | "sculpture"
   | "digital"
-  | "painting"
 
 export type Project = {
   slug: string
   title: string
-  categories: ProjectCategory[]
+  category: ProjectCategory
+  subcategory: ProjectSubcategory
   featured: boolean
   year: string
   location: string
@@ -48,7 +50,8 @@ export const projects: Project[] = [
   {
     slug: "self-help-center",
     title: "Self-Help Center for People Experiencing Homelessness",
-    categories: ["academic"],
+    category: "architecture",
+    subcategory: "academic",
     featured: true,
     year: "Bachelor’s project",
     location: "Wrocław, Poland",
@@ -81,7 +84,8 @@ export const projects: Project[] = [
   {
     slug: "elderberry",
     title: "Under the Elderberry",
-    categories: ["academic"],
+    category: "architecture",
+    subcategory: "academic",
     featured: true,
     year: "2nd semester",
     location: "Oder River, Wrocław, Poland",
@@ -108,7 +112,8 @@ export const projects: Project[] = [
   {
     slug: "photosensitive",
     title: "Photosensitive",
-    categories: ["academic"],
+    category: "architecture",
+    subcategory: "academic",
     featured: true,
     year: "3rd semester",
     location: "Wrocław, Poland",
@@ -137,7 +142,8 @@ export const projects: Project[] = [
   {
     slug: "sensorium",
     title: "Sensorium",
-    categories: ["academic"],
+    category: "architecture",
+    subcategory: "academic",
     featured: true,
     year: "4th semester",
     location: "Stabłowice, Wrocław, Poland",
@@ -169,7 +175,8 @@ export const projects: Project[] = [
   {
     slug: "nursing-home",
     title: "Nursing Home",
-    categories: ["work"],
+    category: "architecture",
+    subcategory: "work",
     featured: true,
     year: "Work project",
     location: "Szklarska Poręba, Poland",
@@ -194,7 +201,8 @@ export const projects: Project[] = [
   {
     slug: "jelenia-gora",
     title: "New Celviskosa",
-    categories: ["academic"],
+    category: "architecture",
+    subcategory: "academic",
     featured: true,
     year: "Team project",
     location: "Jelenia Góra, Poland",
@@ -223,7 +231,8 @@ export const projects: Project[] = [
   {
     slug: "jerzmanowo",
     title: "Jerzmanowo",
-    categories: ["academic"],
+    category: "architecture",
+    subcategory: "academic",
     featured: false,
     year: "",
     location: "Jerzmanowo, Wrocław, Poland",
@@ -243,20 +252,193 @@ export const projects: Project[] = [
       "/projects/more_district/6.png",
     ],
   },
+  {
+    slug: "gates",
+    title: "Gates",
+    category: "art",
+    subcategory: "painting",
+    featured: false,
+    year: "",
+    location: "",
+    type: "",
+    role: "",
+    tools: [],
+    description: [],
+    cover: "/projects/arts/gates/01.jpeg",
+    gallery: [
+      "/projects/arts/gates/01.jpeg",
+      "/projects/arts/gates/02.jpeg",
+      "/projects/arts/gates/03.jpeg",
+    ],
+  },
+  {
+    slug: "at-uni",
+    title: "At Uni",
+    category: "art",
+    subcategory: "painting",
+    featured: false,
+    year: "",
+    location: "",
+    type: "",
+    role: "",
+    tools: [],
+    description: [],
+    cover: "/projects/arts/at-uni.png",
+    gallery: ["/projects/arts/at-uni.png"],
+  },
+  {
+    slug: "auto-hand",
+    title: "Auto-Hand",
+    category: "art",
+    subcategory: "sculpture",
+    featured: false,
+    year: "",
+    location: "",
+    type: "",
+    role: "",
+    tools: [],
+    description: [],
+    cover: "/projects/arts/auto-hand.png",
+    gallery: ["/projects/arts/auto-hand.png"],
+  },
+  {
+    slug: "harbor",
+    title: "Harbor",
+    category: "art",
+    subcategory: "painting",
+    featured: false,
+    year: "",
+    location: "",
+    type: "",
+    role: "",
+    tools: [],
+    description: [],
+    cover: "/projects/arts/harbor.png",
+    gallery: ["/projects/arts/harbor.png"],
+  },
+  {
+    slug: "ksiaz-castle",
+    title: "Książ Castle, Wałbrzych, Poland",
+    category: "art",
+    subcategory: "painting",
+    featured: false,
+    year: "",
+    location: "",
+    type: "",
+    role: "",
+    tools: [],
+    description: [],
+    cover: "/projects/arts/ksiaz-castle.png",
+    gallery: ["/projects/arts/ksiaz-castle.png"],
+  },
+  {
+    slug: "rhytm",
+    title: "Rhytm",
+    category: "art",
+    subcategory: "sculpture",
+    featured: false,
+    year: "",
+    location: "",
+    type: "",
+    role: "",
+    tools: [],
+    description: [],
+    cover: "/projects/arts/rhytm.png",
+    gallery: ["/projects/arts/rhytm.png"],
+  },
+  {
+    slug: "the-bridge",
+    title: "The Bridge",
+    category: "art",
+    subcategory: "painting",
+    featured: false,
+    year: "",
+    location: "",
+    type: "",
+    role: "",
+    tools: [],
+    description: [],
+    cover: "/projects/arts/the-bridge.png",
+    gallery: ["/projects/arts/the-bridge.png"],
+  },
+  {
+    slug: "walbrzych",
+    title: "Wałbrzych, Poland",
+    category: "art",
+    subcategory: "painting",
+    featured: false,
+    year: "",
+    location: "",
+    type: "",
+    role: "",
+    tools: [],
+    description: [],
+    cover: "/projects/arts/walbrzych.png",
+    gallery: ["/projects/arts/walbrzych.png"],
+  },
+  {
+    slug: "windows",
+    title: "Windows",
+    category: "art",
+    subcategory: "painting",
+    featured: false,
+    year: "",
+    location: "",
+    type: "",
+    role: "",
+    tools: [],
+    description: [],
+    cover: "/projects/arts/windows.png",
+    gallery: ["/projects/arts/windows.png"],
+  },
+  {
+    slug: "wroclaw",
+    title: "Wrocław, Poland",
+    category: "art",
+    subcategory: "painting",
+    featured: false,
+    year: "",
+    location: "",
+    type: "",
+    role: "",
+    tools: [],
+    description: [],
+    cover: "/projects/arts/wroclaw.png",
+    gallery: ["/projects/arts/wroclaw.png"],
+  },
 ]
 
-export type ProjectView = "featured" | "all" | ProjectCategory
+export type ProjectView = "featured" | ProjectCategory
 
-export const viewLabels: Record<ProjectView, string> = {
-  featured: "Featured",
-  all: "All",
+export const projectFilters = [
+  { id: "featured", label: "Featured" },
+  {
+    id: "architecture",
+    label: "Architecture",
+    children: [
+      { id: "academic", label: "Academic" },
+      { id: "contests", label: "Contests" },
+      { id: "work", label: "Work" },
+    ],
+  },
+  {
+    id: "art",
+    label: "Art",
+    children: [
+      { id: "painting", label: "Painting / drawing" },
+      { id: "sculpture", label: "Sculpture" },
+      { id: "digital", label: "Digital" },
+    ],
+  },
+] as const
+
+export const subcategoryLabels: Record<ProjectSubcategory, string> = {
   academic: "Academic",
   contests: "Contests",
   work: "Work",
-  drawing: "Drawing",
-  sculpture: "Sculptures",
+  painting: "Painting / drawing",
+  sculpture: "Sculpture",
   digital: "Digital",
-  painting: "Painting",
 }
 
 export const featuredProjects = projects.filter((project) => project.featured)
