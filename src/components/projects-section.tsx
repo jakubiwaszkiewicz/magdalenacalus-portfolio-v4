@@ -1,3 +1,4 @@
+import { Play } from "lucide-react"
 import { useMemo, useState } from "react"
 
 import { Badge } from "@/components/ui/badge"
@@ -21,6 +22,29 @@ import { assetUrl } from "@/lib/assets"
 import { RichText } from "@/lib/rich-text"
 
 const moreProjects = projects.filter((project) => !project.featured)
+
+function isVideo(src: string) {
+  return src.toLowerCase().endsWith(".mp4")
+}
+
+function PlayButton({ size = "lg" }: { size?: "lg" | "sm" }) {
+  return (
+    <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
+      <span
+        className={
+          size === "lg"
+            ? "flex size-16 items-center justify-center rounded-full bg-background/90 text-foreground shadow-lg"
+            : "flex size-8 items-center justify-center rounded-full bg-background/90 text-foreground"
+        }
+      >
+        <Play
+          className={size === "lg" ? "ml-1 size-7 fill-current" : "ml-0.5 size-3.5 fill-current"}
+          aria-hidden
+        />
+      </span>
+    </span>
+  )
+}
 
 function matchesView(
   project: Project,
@@ -136,14 +160,12 @@ export function ProjectsSection() {
               : "mt-12 grid gap-8 sm:grid-cols-2"
           }
         >
-          {visible.map((project) => (
-            <button
-              key={project.slug}
-              type="button"
-              onClick={() => openProject(project)}
-              className="group cursor-pointer text-left"
-            >
-              <div className="overflow-hidden bg-muted">
+          {visible.map((project) => {
+            const video = project.gallery.find(isVideo)
+            const videoOnly = video !== undefined && project.gallery.every(isVideo)
+            const meta = [project.location, project.year].filter(Boolean).join(" · ")
+            const cover = (
+              <div className="relative overflow-hidden bg-muted">
                 <img
                   src={assetUrl(project.cover)}
                   alt={project.title}
@@ -151,29 +173,56 @@ export function ProjectsSection() {
                   loading="lazy"
                   decoding="async"
                 />
+                {videoOnly ? <PlayButton /> : null}
               </div>
-              <div className="mt-4 flex items-start justify-between gap-3">
-                <div>
-                  <h3 className="font-heading text-2xl tracking-[0.04em] transition-colors group-hover:text-foreground/70">
-                    {project.title}
-                  </h3>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {project.year
-                      ? `${project.location} · ${project.year}`
-                      : project.location}
-                  </p>
-                </div>
-                <div className="flex flex-wrap justify-end gap-1">
-                  {project.featured ? (
-                    <Badge variant="outline">Featured</Badge>
-                  ) : null}
-                  <Badge variant="secondary">
-                    {subcategoryLabels[project.subcategory]}
-                  </Badge>
-                </div>
+            )
+
+            return (
+              <div key={project.slug} className="group text-left">
+                {videoOnly && video ? (
+                  <a
+                    href={assetUrl(video)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block cursor-pointer"
+                    aria-label={`Play ${project.title}`}
+                  >
+                    {cover}
+                  </a>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => openProject(project)}
+                    className="block w-full cursor-pointer"
+                  >
+                    {cover}
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={() => openProject(project)}
+                  className="mt-4 flex w-full cursor-pointer items-start justify-between gap-3 text-left"
+                >
+                  <div>
+                    <h3 className="font-heading text-2xl tracking-[0.04em] transition-colors group-hover:text-foreground/70">
+                      {project.title}
+                    </h3>
+                    {meta ? (
+                      <p className="mt-1 text-sm text-muted-foreground">{meta}</p>
+                    ) : null}
+                  </div>
+                  <div className="flex flex-wrap justify-end gap-1">
+                    {project.featured ? (
+                      <Badge variant="outline">Featured</Badge>
+                    ) : null}
+                    <Badge variant="secondary">
+                      {subcategoryLabels[project.subcategory]}
+                    </Badge>
+                  </div>
+                </button>
               </div>
-            </button>
-          ))}
+            )
+          })}
         </div>
 
         {showMore ? (
@@ -216,14 +265,28 @@ export function ProjectsSection() {
                 href={assetUrl(active.gallery[activeImage])}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block cursor-pointer"
+                className="relative block cursor-pointer"
+                aria-label={
+                  isVideo(active.gallery[activeImage])
+                    ? `Play ${active.title}`
+                    : undefined
+                }
               >
                 <img
-                  src={assetUrl(active.gallery[activeImage])}
-                  alt={`${active.title} photo ${activeImage + 1}`}
+                  src={assetUrl(
+                    isVideo(active.gallery[activeImage])
+                      ? active.cover
+                      : active.gallery[activeImage],
+                  )}
+                  alt={
+                    isVideo(active.gallery[activeImage])
+                      ? `${active.title} cover`
+                      : `${active.title} photo ${activeImage + 1}`
+                  }
                   className="aspect-16/11 w-full bg-background object-contain"
                   decoding="async"
                 />
+                {isVideo(active.gallery[activeImage]) ? <PlayButton /> : null}
               </a>
 
               {active.gallery.length > 1 ? (
@@ -235,16 +298,17 @@ export function ProjectsSection() {
                       onClick={() => setActiveImage(index)}
                       className={
                         index === activeImage
-                          ? "ring-2 ring-foreground transition"
-                          : "cursor-pointer opacity-70 transition hover:opacity-100"
+                          ? "relative ring-2 ring-foreground transition"
+                          : "relative cursor-pointer opacity-70 transition hover:opacity-100"
                       }
                     >
                       <img
-                        src={assetUrl(image)}
+                        src={assetUrl(isVideo(image) ? active.cover : image)}
                         alt=""
                         className="aspect-16/11 w-full object-contain"
                         decoding="async"
                       />
+                      {isVideo(image) ? <PlayButton size="sm" /> : null}
                     </button>
                   ))}
                 </div>
