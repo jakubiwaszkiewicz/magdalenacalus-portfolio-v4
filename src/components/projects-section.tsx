@@ -51,9 +51,9 @@ export function ProjectsSection() {
   const [active, setActive] = useState<Project | null>(null)
   const [activeImage, setActiveImage] = useState(0)
 
+  const activeFilter = projectFilters.find((filter) => filter.id === view)
   const subcategories =
-    projectFilters.find((filter) => filter.id === view && "children" in filter)
-      ?.children ?? []
+    activeFilter && "children" in activeFilter ? activeFilter.children : []
 
   const visible = useMemo(() => {
     if (view === "featured" && expanded) {
